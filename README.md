@@ -36,13 +36,16 @@ Alternative:
 > sudo ruby run.rb --help
 
 ## Commands
+
+All Commands provide in-script help textes thereself just try around a bit.
+
 *  list
 
    > List connections
-*  sort VALUE 
+*  sort (time|ip1|ip2|port|type|slug|traffic|packages) [true|]
 
-   > Sort connections by value (try "sort" to get more help)
-*  filter VALUE
+   > Sort connections by value, true for reverse
+*  filter (VALUE|clear)
 
    > Set filter for connection list
 
