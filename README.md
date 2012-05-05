@@ -4,6 +4,8 @@ KrümelMonsta
 RubyPcap based Network Traffic filter designed to make relevant Information easy acessable.
 It's not very useful yet but it can be used for http package anaylzing already.
 
+![Example KrümelMonsta Screen](http://i48.tinypic.com/2mhdenp.png)
+
 **Note that this software is made for Unix boxes**
 
 ## Install
