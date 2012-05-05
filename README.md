@@ -106,9 +106,10 @@ Detects Minecraft joins
 
 ## Author
 
-Roman Pramberger <roman.pramberger@gmail.com>
+Roman Pramberger <roman(DOT)pramberger(AT)gmail(DOT)com>
 
-> I've done this as a fun project and to increase my skills in networking
+> I've done this as a fun project and to increase my skills in networking.
+> Dont blame me for any problems
 
 ## License
 
