@@ -26,6 +26,7 @@ If you want to use the HTTP Proxy
 ## Use
 
 > cd /path/to/krümelmonsta
+
 > sudo ruby run.rb --device eth0
 
 Alternative:
@@ -42,3 +43,27 @@ Alternative:
 *  filter VALUE
 
    > Set filter for connection list
+
+## Mods
+
+#### http
+
+*  http list
+ 
+   > List saved HTTP Requests
+
+*  http size
+
+   > Count of HTTP Requests
+
+*  http filter (VALUE|clear)
+
+   > Set/clear filter for http list
+
+*  http remove VALUE
+
+   > Remove content by value
+
+*  http proxy (PORT|stop|update)
+
+   > Start/Stop/Update proxy
