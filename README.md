@@ -39,36 +39,75 @@ Alternative:
 
 All Commands provide in-script help textes thereself just try around a bit.
 
-*  list
+*  List connections
 
-   > List connections
-*  sort (time|ip1|ip2|port|type|slug|traffic|packages) [true|]
+   > list
+*  Sorting by VALUE, true for reverse
 
-   > Sort connections by value, true for reverse
-*  filter (VALUE|clear)
+   > sort (time|ip1|ip2|port|type|slug|traffic|packages) [true|]
+*  Set/Clear Filter
 
-   > Set filter for connection list
+   > filter (VALUE|clear)
 
 ## Mods
 
-#### http
+#### MOD_http
 
-*  http list
+*  List saved HTTP Requests
  
-   > List saved HTTP Requests
+   > http list
 
-*  http size
+*  Count of HTTP Requests
 
-   > Count of HTTP Requests
+   > http size
 
-*  http filter (VALUE|clear)
+*  Set/clear filter for http list
 
-   > Set/clear filter for http list
+   > http filter (VALUE|clear)
 
-*  http remove VALUE
+*  Remove content by value
 
-   > Remove content by value
+   > http remove VALUE
 
-*  http proxy (PORT|stop|update)
+*  Start/Stop/Update proxy
 
-   > Start/Stop/Update proxy
+   > http proxy (PORT|stop|update)
+
+#### MOD_irc
+
+*  Show IRC log
+
+   > irc list
+*  Clear IRC log
+
+   > irc clear
+*  Set/Clear filter
+
+   > irc filter (VALUE|clear)
+*  Remove by value
+
+   > irc remove VALUE
+
+#### MOD_torrent
+Detects Torrent connections
+
+*  No commands aviable
+
+#### MOD_msn
+Detects MSN connections
+
+*  No commands aviable
+*  tested only with aMSN
+
+#### MOD_minecraft
+Detects Minecraft joins
+
+*  No commands aviable
+
+## License
+
+i dont plan to use any known license. Just follow those simple rules:
+
+*  If you publish it in any way, link to this github
+*  Dont sell it. Except in form of a "package" but association in rule 1
+*  Else, do whatever you want
