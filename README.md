@@ -27,7 +27,7 @@ If you want to use the HTTP Proxy
 
 ## Use
 
-> cd /path/to/krümelmonsta
+> cd /path/to/KruemelMonsta
 
 > sudo ruby run.rb --device eth0
 
