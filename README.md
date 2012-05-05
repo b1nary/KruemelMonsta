@@ -15,7 +15,7 @@ It works recursive from the working directory and needs a few depencies like rub
 
 First get the files:
 
->  git clone https://b1nary@github.com/b1nary/KruemelMonsta.git
+>  git clone https://github.com/b1nary/KruemelMonsta.git
 
 Install depencies:
 
