@@ -17,7 +17,6 @@ require 'lib/mods'
 require 'lib/proxy'
 
 require 'mods/interface/cli'
-require 'mods/themes/default'
 
 options = {}
 OptionParser.new do |opts|
@@ -29,41 +28,40 @@ OptionParser.new do |opts|
 		options[:device] = v
 	end
 
-	options[:logall] = false
-	opts.on("-L", "--log-all", "Automatically log every detected connection") do |v|
-		options[:logall] = true
-	end
-
 	opts.on("-f", "--filter [FILTER]", "Use a Pcap Filter string (default: tcp and udp)") do |v|
 		options[:filter] = v
 	end
 
-	opts.separator ""
-
-	options[:save] = false
-	opts.on("-s", "--save [NAME]", "Safe to named session") do |v|
-		options[:save] = v
-	end
-
-	opts.on("-l", "--load [NAME]", "Load given session") do |v|
-		options[:load] = v
+	opts.on("-t", "--theme [NAME]", "Load specific theme from mods/themes") do |v|
+		options[:theme] = v
 	end
 
 	opts.separator ""
 
-	opts.on("-W", "--web [PORT]", "Start web interface on given port") do |v|
-		options[:web] = v
-	end
+#	options[:save] = false
+#	opts.on("-s", "--save [NAME]", "Safe to named session") do |v|
+#		options[:save] = v
+#	end
+#
+#	opts.on("-l", "--load [NAME]", "Load given session") do |v|
+#		options[:load] = v
+#	end
 
-	opts.on("-D", "--demonize", "Start programm as deamon") do |v|
-		options[:demon] = v
-	end
+#	opts.separator ""
+
+#	opts.on("-W", "--web [PORT]", "Start web interface on given port") do |v|
+#		options[:web] = v
+#	end
+
+#	opts.on("-D", "--demonize", "Start programm as deamon") do |v|
+#		options[:demon] = v
+#	end
 end.parse!
 
-if options[:logall]
-	AUTOWATCH = true
+if options[:theme].nil?
+require 'mods/themes/default'
 else
-	AUTOWATCH = false
+require 'mods/themes/'+options[:theme]
 end
 
 STDOUT.sync = true
@@ -71,7 +69,7 @@ STDOUT.sync = true
 KMPcap.init options[:device], options[:filter]
 
 def _readline
-	line = Readline.readline(Util._background(235)+''+Util._foreground(44)+' > '+Util._foreground(254), true)
+	line = Readline.readline(Util._background(COLOR_HEADER_BACKGROUND)+''+Util._foreground(COLOR_HEADER_TEXT)+' > '+Util._foreground(254), true)
 	return nil if line.nil?
 	if line =~ /^\s*$/ or Readline::HISTORY.to_a[-2] == line
 		Readline::HISTORY.pop
@@ -93,7 +91,7 @@ interface = Cli.new
 comp = proc { |s| @clist.grep( /^#{Regexp.escape(s)}/ ) }
 Readline.completion_append_character = " "
 Readline.completion_proc = comp
-
+interface.header
 while inp = _readline
 
 	interface.header
@@ -155,7 +153,7 @@ while inp = _readline
 	# Removing
 	#
 	elsif cmd[0] == "remove" or cmd[0] == "r"
-
+		Data.remove cmd
 
 	else
 

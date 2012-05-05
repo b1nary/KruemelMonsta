@@ -48,6 +48,9 @@ All Commands provide in-script help textes thereself just try around a bit.
 *  Set/Clear Filter
 
    > filter (VALUE|clear)
+*  Remove connections
+
+   > remove (VALUE|older) [seconds]
 
 ## Mods
 
@@ -106,9 +109,10 @@ Detects Minecraft joins
 
 ## Author
 
-Roman Pramberger <roman(DOT)pramberger(AT)gmail(DOT)com>
+b1nary
 
 > I've done this as a fun project and to increase my skills in networking.
+
 > Dont blame me for any problems
 
 ## License

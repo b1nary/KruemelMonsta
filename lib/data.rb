@@ -2,7 +2,7 @@ class Data
 
 	##
 	# @conns Hash
-	# Hash[[ip1,ip2,port1,port2,type]] = [run,slug,moduls,size,last-tick,package-count,modul_meta[]]
+	# Hash[[ip1,ip2,port1,type]] = [run,slug,moduls,size,last-tick,package-count,modul_meta[]]
 	@@conns = Hash.new
 
 	def self.init
@@ -32,7 +32,7 @@ class Data
 	# Get Packages from the Pcap loop and detect if they exist
 	# else create them
 	def self.push pkt
-		mode = :nil
+		mode = :none
 		(mode = :tcp ; @@conns[:stats][:traffic_tcp] += pkt.size) if pkt.tcp?
 		(mode = :udp ; @@conns[:stats][:traffic_udp] += pkt.size) if pkt.udp?
 		@@conns[:stats][:traffic] += pkt.size
@@ -72,7 +72,7 @@ class Data
 			if x != nil
 				@@conns[key][2] << x
 				@@conns[key][1] = Mods.slug( @@conns[key][2][0], pkt )
-				Mods.job x, pkt
+				Mods.job m, pkt
 			end
 		end
 
@@ -90,9 +90,65 @@ class Data
 			else
 				pkg = [sip,dip,spo,mode]
 			end
-			@@conns[pkg] = [AUTOWATCH,'',[],0,0,0,{}]
+			@@conns[pkg] = [true,'',[],0,0,0,{}]
 
 			self.work pkg,pkt
+	end
+
+	def self.remove cmd
+		if !cmd[1].nil?
+			help = false
+			d = 0
+			if cmd[1] == "older"
+				if cmd[2].nil?
+					help = true
+				else
+					if Util.numeric? cmd[2]
+						@@conns.each do |k,v|
+							old = Time.now.to_f-v[4]
+							if old > cmd[2].to_i
+								@@conns.delete(k)
+								d += 1
+							end
+						end
+						if d == 0	
+							$mst = :error
+							$msg = "No connections removed"
+						else
+							$mst = :info
+							$msg = "#{d} connections removed"
+						end
+					else
+						$mst = :error
+						$msg = "Please provide an integer for this Operation"
+					end
+				end
+			else
+				rm = cmd.join(" ").split('remove ',2)[1] if cmd[0] == "remove"
+				rm = cmd.join(" ").split('r ',2)[1] if cmd[0] == "r"
+				rm = "?????" if rm.nil?
+				@@conns.each do |k,v|
+					if k.class == Array
+						if k[0].to_s.include? rm or k[1].to_s.include? rm or k[2].to_s.include? rm or k[3].to_s.include? rm or v[1].to_s.include? rm or (!v[2][0].nil? and v[2][0].to_s.include? rm)
+							@@conns.delete(k)
+							d += 1
+						end
+					end
+				end
+				if d == 0	
+					$mst = :error
+					$msg = "No connections found by \"#{rm}\""
+				else
+					$mst = :info
+					$msg = "#{d} connections removed"
+				end
+			end
+		else
+			help = true
+		end
+		if help
+			Cli.help ["Removing","Usage: remove (VALUE|older) [seconds]","Shortcut: r",""," VALUE\t\t\t\tremove by Value"," older [SECS]\tremove all older than X seconds"]
+		end
 	end
 
 end
