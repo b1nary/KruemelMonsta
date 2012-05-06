@@ -1,13 +1,14 @@
 ![Example KrümelMonsta Screen](http://i48.tinypic.com/2mhdenp.png)
-
 KrümelMonsta
 =============
 
 Ruby-Pcap based Network Traffic sniffer designed to make relevant Information easy acessable.
-Its made to give a new experience in Traffic Sniffing, you finally wont see a flood of nonsense packages. You get each connection but you only get detailed information if its useful (and there is a modul for it). The HTTP Modul makes it easy to view all HTTP Request, you can start a Proxy directly to use all or a set of the captured cookies. And yes its extendable, so extend it to do whatever you want.
+Its made to give a new experience in Traffic Sniffing, you finally wont see a flood of nonsense packages. You get each connection but you only get detailed information if its useful (and there is a modul for it). The HTTP Modul makes it easy to view all HTTP Request, you can start a Proxy directly to use all or a set of the captured cookies. And yes its extendable, so extend it to do whatever you want. 
 
 
-**Note that this software is made for Unix boxes only**
+**Note that this software is made for Unix boxes only and wont work with Ruby 1.9**
+
+Also pcap itself seems buggy like hell on some machines/versions... i dont know why, it worked fine on mine. Try to remove the 'site_ruby' files in the error message if you have the missing pointers error.
 
 ## Install
 There is no need to really install it.
@@ -20,7 +21,7 @@ First get the files:
 
 Install depencies:
 
-> sudo gem install pcap
+> sudo apt-get install libpcap-ruby1.8
 
 If you want to use the HTTP Proxy
 
