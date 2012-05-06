@@ -1,10 +1,11 @@
+![Example KrümelMonsta Screen](http://i48.tinypic.com/2mhdenp.png)
+
 KrümelMonsta
 =============
 
-RubyPcap based Network Traffic sniffer designed to make relevant Information easy acessable.
-It's not very useful yet but it can be used for http package anaylzing already. The idea behind the script is to make a new experience network sniffer. On its own it just handles your local traffic but with the help of ettercap or similar you can use a script like this for many many purposes. Also note its made for gatherling Information it cant infect or manipulate Packets, but you can write additional Moduls to get several types of Information.
+Ruby-Pcap based Network Traffic sniffer designed to make relevant Information easy acessable.
+Its made to give a new experience in Traffic Sniffing, you finally wont see a flood of nonsense packages. You get each connection but you only get detailed information if its useful (and there is a modul for it). The HTTP Modul makes it easy to view all HTTP Request, you can start a Proxy directly to use all or a set of the captured cookies. And yes its extendable, so extend it to do whatever you want.
 
-![Example KrümelMonsta Screen](http://i48.tinypic.com/2mhdenp.png)
 
 **Note that this software is made for Unix boxes only**
 
