@@ -6,7 +6,7 @@ It's not very useful yet but it can be used for http package anaylzing already. 
 
 ![Example KrümelMonsta Screen](http://i48.tinypic.com/2mhdenp.png)
 
-**Note that this software is made for Unix boxes**
+**Note that this software is made for Unix boxes only**
 
 ## Install
 There is no need to really install it.
@@ -25,7 +25,7 @@ If you want to use the HTTP Proxy
 
 > sudo gem install webrick
 
-## Use
+## Use it
 
 > cd /path/to/KruemelMonsta
 
@@ -111,6 +111,11 @@ Detects Minecraft joins
 
 *  No commands aviable
 
+## Themes
+Yes its Themeable. It just come to this, it doesnt really make it better.
+
+![Example KrümelMonsta Theme Screen](http://i50.tinypic.com/2lu8f8w.png)
+
 ## Author
 
 b1nary
@@ -124,5 +129,5 @@ b1nary
 i dont plan to use any known license. Just follow those simple rules:
 
 *  If you publish it in any way, link to this github
-*  Dont sell it. Except in form of a "package" but association in rule 1
+*  Dont sell it. You can give it for free any time in association with rule 1
 *  Else, do whatever you want
