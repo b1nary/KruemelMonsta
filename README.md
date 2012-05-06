@@ -52,6 +52,10 @@ All Commands provide in-script help textes thereself just try around a bit.
 
    > remove (VALUE|older) [seconds]
 
+*  Session Statistic
+
+   > stat [clear]
+
 ## Mods
 
 #### MOD_http

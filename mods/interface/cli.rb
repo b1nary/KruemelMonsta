@@ -89,13 +89,65 @@ class Cli
 			print "\n"
 		end
 	end
+	
+	##
+	# Ugly in code, but sexy in look
+	# (this applys also to most of the other code)
+	def self.list_stat title, hash
+		Util.foreground COLOR_CONTENT_1
+		puts " #{title}\n\n"
+
+		Util.foreground COLOR_CONTENT_2
+		print Util.str_size "  Packages",16
+		Util.foreground COLOR_CONTENT_3
+		print " => "
+		Util.foreground COLOR_CONTENT_5
+		print hash[:packages].to_s+"\n"
+
+		Util.foreground COLOR_CONTENT_2
+		print Util.str_size "  Session start",16
+		Util.foreground COLOR_CONTENT_3
+		print " => "
+		Util.foreground COLOR_CONTENT_5
+		print Util.time(hash[:time_start])+"\n"
+
+		Util.foreground COLOR_CONTENT_2
+		print Util.str_size "  Last Package",16
+		Util.foreground COLOR_CONTENT_3
+		print " => "
+		Util.foreground COLOR_CONTENT_5
+		print Util.time(hash[:time_lastpkt])+"\n"
+
+		puts ""
+
+		Util.foreground COLOR_CONTENT_2
+		print Util.str_size "  Traffic (all)",16
+		Util.foreground COLOR_CONTENT_3
+		print " => "
+		Util.foreground COLOR_CONTENT_5
+		print Util.size(hash[:traffic])+"\n"
+
+		Util.foreground COLOR_CONTENT_2
+		print Util.str_size "  Traffic (tcp)",16
+		Util.foreground COLOR_CONTENT_3
+		print " => "
+		Util.foreground COLOR_CONTENT_5
+		print Util.size(hash[:traffic_tcp])+"\n"
+		
+		Util.foreground COLOR_CONTENT_2
+		print Util.str_size "  Traffic (udp)",16
+		Util.foreground COLOR_CONTENT_3
+		print " => "
+		Util.foreground COLOR_CONTENT_5
+		print Util.size(hash[:traffic_udp])+"\n"
+	end
 
 	def self.list_2col title, hash
 		Util.foreground COLOR_CONTENT_1
 		puts " #{title}\n\n"
 		hash.each do |k,v|
 			Util.foreground COLOR_CONTENT_2
-			print Util.str_size "  #{k}",12
+			print Util.str_size "  #{k}",14
 			Util.foreground COLOR_CONTENT_3
 			print " => "
 			Util.foreground COLOR_CONTENT_5

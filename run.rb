@@ -155,6 +155,18 @@ while inp = _readline
 	elsif cmd[0] == "remove" or cmd[0] == "r"
 		Data.remove cmd
 
+	#
+	# Stats
+	#
+	elsif cmd[0] == "stats" or cmd[0] == "stat"
+		if !cmd[1].nil? and cmd[1] == "clear"
+			Data.clear_stat
+			Cli.list_stat "Session Stats", Data.stats
+			$mst = :info
+			$msg = "Session Stats cleared"
+		else
+			Cli.list_stat "Session Stats", Data.stats
+		end
 	else
 
 		if Mods.exist? cmd[0]
@@ -171,11 +183,11 @@ while inp = _readline
 	puts "\n\n"
 	if !$msg.nil?
 		if $mst == :info
-		Util.background COLOR_INFO_BACKGROUND
-		Util.foreground COLOR_INFO_FOREGROUND
+			Util.background COLOR_INFO_BACKGROUND
+			Util.foreground COLOR_INFO_FOREGROUND
 		elsif $mst == :error
-		Util.background COLOR_ERROR_BACKGROUND
-		Util.foreground COLOR_ERROR_FOREGROUND
+			Util.background COLOR_ERROR_BACKGROUND
+			Util.foreground COLOR_ERROR_FOREGROUND
 		end
 		str = ":: #{$msg} "
 		line = ' '*(Util.cols-str.size-2)

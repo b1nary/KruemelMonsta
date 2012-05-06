@@ -7,10 +7,20 @@ class Data
 
 	def self.init
 		@@conns[:stats] = Hash.new
+		self.clear_stat
+	end
+
+	def self.clear_stat
 		@@conns[:stats][:packages] = 0
 		@@conns[:stats][:traffic] = 0
 		@@conns[:stats][:traffic_tcp] = 0
 		@@conns[:stats][:traffic_udp] = 0
+		@@conns[:stats][:time_start] = Time.now.to_i
+		@@conns[:stats][:time_lastpkt] = 0
+	end
+
+	def self.stats
+		@@conns[:stats]
 	end
 
 	def self.dump
@@ -37,6 +47,7 @@ class Data
 		(mode = :udp ; @@conns[:stats][:traffic_udp] += pkt.size) if pkt.udp?
 		@@conns[:stats][:traffic] += pkt.size
 		@@conns[:stats][:packages] += 1
+		@@conns[:stats][:time_lastpkt] = Time.new.to_i
 
 		sip, dip = pkt.ip_dst.to_s, pkt.ip_src.to_s
 		spo, dpo = pkt.sport, pkt.dport
@@ -123,6 +134,25 @@ class Data
 						$msg = "Please provide an integer for this Operation"
 					end
 				end
+
+			elsif cmd[1] == "port" and cmd.size > 2
+				@@conns.each do |k,v|
+					begin
+						if cmd[2].to_i == k[2].to_i
+							@@conns.delete(k)
+							d += 1
+						end
+					rescue
+					end
+				end
+				if d == 0	
+					$mst = :error
+					$msg = "No connections removed"
+				else
+					$mst = :info
+					$msg = "#{d} connections removed"
+				end
+				
 			else
 				rm = cmd.join(" ").split('remove ',2)[1] if cmd[0] == "remove"
 				rm = cmd.join(" ").split('r ',2)[1] if cmd[0] == "r"
@@ -147,7 +177,7 @@ class Data
 			help = true
 		end
 		if help
-			Cli.help ["Removing","Usage: remove (VALUE|older) [seconds]","Shortcut: r",""," VALUE\t\t\t\tremove by Value"," older [SECS]\tremove all older than X seconds"]
+			Cli.help ["Removing","Usage: remove (VALUE|older|port) [seconds|port]","Shortcut: r",""," VALUE\t\tremove by Value"," older [SECS]\tremove all older than X seconds"," port [PORT]\tremove by port"]
 		end
 	end
 
