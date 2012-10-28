@@ -13,8 +13,11 @@ There is no need to really install it.
 
 It works recursive from the working directory and needs a few depencies like ruby and optionally the WEBrick gem
 
-### Install depencies:
+First get the files:
 
+>  git clone https://github.com/b1nary/KruemelMonsta.git
+
+Install depencies:
 libpcap-dev
 
 > sudo apt-get install libpcap-dev
@@ -25,11 +28,6 @@ https://github.com/ahobson/ruby-pcap
 > cd ruby-pcap
 > rake build
 > gem install pcap-*.gem
-
-### Get the KruemelMonsta:
-
->  git clone https://github.com/b1nary/KruemelMonsta.git
-
 
 If you want to use the HTTP Proxy
 
