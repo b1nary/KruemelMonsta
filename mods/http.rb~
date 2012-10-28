@@ -40,10 +40,7 @@ class MOD_http
 			puts "\n\n You have #{@@http.length} captured Requests"
 
 		elsif cmd[0] == "list" or cmd[0] == ""
-			if !@@filter.nil?
-				$mst = :info
-				$msg = "Filter on: #{@@filter}"
-			end
+			 if !@@filter.nil?
 			Cli.list_http @@http, @@filter
 
 		elsif cmd[0] == "filter"
