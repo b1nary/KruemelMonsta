@@ -104,7 +104,7 @@ class MOD_http
 			Cli.list_2col "Package info:", @@http[cmd[0].to_i] if !@@http[cmd[0].to_i].nil?
 
 		else
-			Cli.help ["HTTP Modul","Usage: http command [parameter]","","Commands:"," list\t\t\tlist captured requests"," size\t\t\trequest count"," filter FILTER\t\tset filter"," filter clear\t\tclear filter"," remove VALUE\t\tremove by value","","Full Info:"," NUM\t\tjust type the request id as command","","Cookie Proxy","Spawn Proxy session for specific requests with:"," proxy PORT [FILTER]\t","Yes you can filter the session per cookie content, you need also:"," proxy stop\t"," proxy update [FILTER]\t"]
+			Cli.help ["HTTP Modul","Usage: http command [parameter]","","Commands:"," list\t\t\t\t\tlist captured requests"," size\t\t\t\t\trequest count"," filter FILTER\t\tset filter"," filter clear\t\tclear filter"," remove VALUE\t\tremove by value","","Full Info:"," NUM\t\tjust type the request id as command","","Cookie Proxy","Spawn Proxy session for specific requests with:"," proxy PORT [FILTER]\t","Yes you can filter the session per cookie content, you need also:"," proxy stop\t"," proxy update [FILTER]\t"]
 
 		end
 	end
