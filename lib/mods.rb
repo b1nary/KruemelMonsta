@@ -15,17 +15,19 @@ class Mods
 	def self.try pkt
 		@@mods.each do |m|
 			mod = "MOD_#{m}"
-			eval(mod).strings.each do |mx|
-				out = nil
-				mx.each do |my|
-					if my.match(/^hex_/) and Util.to_hex(pkt).include? my.gsub('hex_','') and (out.nil? or out == true)
-						out = true
-					elsif pkt.raw_data.include? my and (out.nil? or out == true)
-						out = true
-					else
-						out = false
+			if eval(mod).respond_to? 'strings'
+				eval(mod).strings.each do |mx|
+					out = nil
+					mx.each do |my|
+						if my.match(/^hex_/) and Util.to_hex(pkt).include? my.gsub('hex_','') and (out.nil? or out == true)
+							out = true
+						elsif pkt.raw_data.include? my and (out.nil? or out == true)
+							out = true
+						else
+							out = false
+						end
+						return m if out
 					end
-					return m if out
 				end
 			end
 		end

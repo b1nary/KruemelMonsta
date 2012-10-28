@@ -21,7 +21,6 @@ class KMPcap
 				if @doit
 					begin
 						Data.push pkt
-						#puts pkt.raw_data if pkt.sport == 53 or pkt.dport == 53
 					rescue
 					end
 				end
