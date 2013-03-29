@@ -2,31 +2,36 @@
 KrümelMonsta
 =============
 
-Ruby-Pcap based Network Traffic sniffer designed to make relevant Information easy acessable.
-Its made to give a new experience in Traffic Sniffing, you finally wont see a flood of nonsense packages. You get each connection but you only get detailed information if its useful (and there is a modul for it). The HTTP Modul makes it easy to view all HTTP Request, you can start a Proxy directly to use all or a set of the captured cookies. And yes its extendable, so extend it to do whatever you want. 
+It is a Ruby-Pcap based network-traffic sniffer designed to make relevant information easy accessible.
+Gathered information will be detected by available modules, these modules will analyze the packages on their own way and provide you and interface for that data.
+The module design is simple (kind of to simple sometimes).
 
+*Features*
+	* Log & analyze traffic
+	* Modules to make the data easy accessible
+	* Included HTTP gathered Cookie Proxy
+	* much more
 
-**Note that this software is made for Unix boxes only**
+_Please report back if you create some cool modules._
+
+**Note that this software is designed for Unix boxes only**
 
 ## Install
 There is no need to really install it.
 
-It works recursive from the working directory and needs a few depencies like ruby and optionally the WEBrick gem
+It works recursive from the working directory and needs a few depencies (see below)
 
-### Install depencies:
+### Install depencies (Debian/Ubuntu):
 
-libpcap-dev
+libpcap-dev ruby-sources
 
-> sudo apt-get install libpcap-dev
+> sudo apt-get install libpcap-dev ruby-dev
 
 https://github.com/ahobson/ruby-pcap
 
 > git clone https://github.com/ahobson/ruby-pcap
-
 > cd ruby-pcap
-
-> rake build
-
+> gem build pcap*.gemspec
 > gem install pcap-*.gem
 
 ### Get the KruemelMonsta:
@@ -139,8 +144,10 @@ b1nary
 
 ## License
 
-i dont plan to use any known license. Just follow those simple rules:
+>Copyright (c) 2011 b1nary
 
-*  If you publish it in any way, link to this github
-*  Dont sell it. You can give it for free any time in association with rule 1
-*  Else, do whatever you want
+>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

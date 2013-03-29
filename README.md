@@ -2,37 +2,41 @@
 KrümelMonsta
 =============
 
-Ruby-Pcap based Network Traffic sniffer designed to make relevant Information easy acessable.
-Its made to give a new experience in Traffic Sniffing, you finally wont see a flood of nonsense packages. You get each connection but you only get detailed information if its useful (and there is a modul for it). The HTTP Modul makes it easy to view all HTTP Request, you can start a Proxy directly to use all or a set of the captured cookies. And yes its extendable, so extend it to do whatever you want. 
+It is a Ruby-Pcap based network-traffic sniffer designed to make relevant information easy accessible.
+Gathered information will be detected by available modules, these modules will analyze the packages on their own way and provide you and interface for that data.
+The module design is simple (kind of to simple sometimes).
 
+*Features*
+	* Log & analyze traffic
+	* Modules to make the data easy accessible
+	* Included HTTP gathered Cookie Proxy
+	* much more
 
-**Note that this software is made for Unix boxes only**
+_Please report back if you create some cool modules._
+
+**Note that this software is designed for Unix boxes only**
 
 ## Install
 There is no need to really install it.
 
-It works recursive from the working directory and needs a few depencies like ruby and optionally the WEBrick gem
+It works recursive from the working directory and needs a few depencies (see below)
 
-### Install depencies:
+### Install depencies (Debian/Ubuntu):
 
-libpcap-dev
+libpcap-dev ruby-sources
 
-> sudo apt-get install libpcap-dev
+> sudo apt-get install libpcap-dev ruby-dev
 
 https://github.com/ahobson/ruby-pcap
 
 > git clone https://github.com/ahobson/ruby-pcap
-
 > cd ruby-pcap
-
-> rake build
-
+> gem build pcap*.gemspec
 > gem install pcap-*.gem
 
 ### Get the KruemelMonsta:
 
->  git clone https://github.com/b1nary/KruemelMonsta.git
-
+> git clone https://github.com/b1nary/KruemelMonsta.git
 
 If you want to use the HTTP Proxy
 
@@ -41,7 +45,6 @@ If you want to use the HTTP Proxy
 ## Use it
 
 > cd /path/to/KruemelMonsta
-
 > sudo ruby run.rb --device eth0
 
 Alternative:
