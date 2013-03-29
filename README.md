@@ -30,8 +30,11 @@ libpcap-dev ruby-sources
 https://github.com/ahobson/ruby-pcap
 
 > git clone https://github.com/ahobson/ruby-pcap
+
 > cd ruby-pcap
+
 > gem build pcap*.gemspec
+
 > gem install pcap-*.gem
 
 ### Get the KruemelMonsta:
@@ -45,6 +48,7 @@ If you want to use the HTTP Proxy
 ## Use it
 
 > cd /path/to/KruemelMonsta
+
 > sudo ruby run.rb --device eth0
 
 Alternative:
@@ -73,6 +77,8 @@ All Commands provide in-script help textes thereself just try around a bit.
    > stat [clear]
 
 ## Mods
+
+You can also view the commands in the interface, for example just type "http"
 
 #### MOD_http
 

@@ -36,8 +36,7 @@ https://github.com/ahobson/ruby-pcap
 
 ### Get the KruemelMonsta:
 
->  git clone https://github.com/b1nary/KruemelMonsta.git
-
+> git clone https://github.com/b1nary/KruemelMonsta.git
 
 If you want to use the HTTP Proxy
 
@@ -46,7 +45,6 @@ If you want to use the HTTP Proxy
 ## Use it
 
 > cd /path/to/KruemelMonsta
-
 > sudo ruby run.rb --device eth0
 
 Alternative:
