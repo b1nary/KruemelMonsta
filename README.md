@@ -3,148 +3,29 @@ KrümelMonsta
 =============
 
 It is a Ruby-Pcap based network-traffic sniffer designed to make relevant information easy accessible.
-Gathered information will be detected by available modules, these modules will analyze the packages on their own way and provide you and interface for that data.
-The module design is simple (kind of to simple sometimes).
+Gathered information will be detected by available modules, these modules will analyze the packages on their own way and provide you an interface for that data.
 
 *Features*
+
 	* Log & analyze traffic
 	* Modules to make the data easy accessible
-	* Included HTTP gathered Cookie Proxy
+	* Cookie proxy
 	* much more
 
 _Please report back if you create some cool modules._
 
 **Note that this software is designed for Unix boxes only**
 
-## Install
-There is no need to really install it.
-
-It works recursive from the working directory and needs a few depencies (see below)
-
-### Install depencies (Debian/Ubuntu):
-
-libpcap-dev ruby-sources
-
-> sudo apt-get install libpcap-dev ruby-dev
-
-https://github.com/ahobson/ruby-pcap
-
-> git clone https://github.com/ahobson/ruby-pcap
-
-> cd ruby-pcap
-
-> gem build pcap*.gemspec
-
-> gem install pcap-*.gem
-
-### Get the KruemelMonsta:
-
-> git clone https://github.com/b1nary/KruemelMonsta.git
-
-If you want to use the HTTP Proxy
-
-> sudo gem install webrick
-
-## Use it
-
-> cd /path/to/KruemelMonsta
-
-> sudo ruby run.rb --device eth0
-
-Alternative:
-
-> sudo ruby run.rb --help
-
-## Commands
-
-All Commands provide in-script help textes thereself just try around a bit.
-
-*  List connections
-
-   > list
-*  Sorting by VALUE, true for reverse
-
-   > sort (time|ip1|ip2|port|type|slug|traffic|packages) [true|]
-*  Set/Clear Filter
-
-   > filter (VALUE|clear)
-*  Remove connections
-
-   > remove (VALUE|older) [seconds]
-
-*  Session Statistic
-
-   > stat [clear]
-
-## Mods
-
-You can also view the commands in the interface, for example just type "http"
-
-#### MOD_http
-
-*  List saved HTTP Requests
- 
-   > http list
-
-*  Count of HTTP Requests
-
-   > http size
-
-*  Set/clear filter for http list
-
-   > http filter (VALUE|clear)
-
-*  Remove content by value
-
-   > http remove VALUE
-
-*  Start/Stop/Update proxy
-
-   > http proxy (PORT|stop|update)
-
-#### MOD_irc
-
-*  Show IRC log
-
-   > irc list
-*  Clear IRC log
-
-   > irc clear
-*  Set/Clear filter
-
-   > irc filter (VALUE|clear)
-*  Remove by value
-
-   > irc remove VALUE
-
-#### MOD_torrent
-Detects Torrent connections
-
-*  No commands aviable
-
-#### MOD_msn
-Detects MSN connections
-
-*  No commands aviable
-*  tested only with aMSN
-
-#### MOD_minecraft
-Detects Minecraft joins
-
-*  No commands aviable
-
-## Themes
-Yes its Themeable. It just come to this, it doesnt really make it better.
-
-![Example KrümelMonsta Theme Screen](http://i50.tinypic.com/2lu8f8w.png)
+[Installation](https://github.com/b1nary/KruemelMonsta/wiki/Installation) - 
+[Commands](https://github.com/b1nary/KruemelMonsta/wiki/Commands) - 
+[Themes](https://github.com/b1nary/KruemelMonsta/wiki/Themes)
 
 ## Author
 
 b1nary
 
-> I've done this as a fun project and to increase my skills in networking.
-
-> Dont blame me for any problems
+    I've done this as a fun project and to increase my skills in networking.
+    Dont blame me for any problems
 
 ## License
 
