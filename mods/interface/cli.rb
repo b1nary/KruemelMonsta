@@ -18,7 +18,7 @@ class Cli
 		puts  ' 88"Yb  88"Yb  Y8   8P 88YbdP88 88""   88  .o 88YbdP88 Yb   dP 88 Y88 o.`Y8b   88    dP__Yb  '
 		print ' 88  Yb 88  Yb  YbodP  88 YY 88 888888 88ood8 88 YY 88  YbodP  88  Y8 8bodP    88   dP""""Yb '
 	  Util.foreground COLOR_HEADER_VERSION
-		puts " V 0.1"
+		puts " V 0.2"
 	  Util.foreground COLOR_HEADER_LINE
 		print '='*Util.cols
 	  Util.background COLOR_CONTENT_BACKGROUND
