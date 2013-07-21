@@ -21,6 +21,16 @@ _Please report back if you create some cool modules._
 [Themes](https://github.com/b1nary/KruemelMonsta/wiki/Themes) - 
 [Mods](https://github.com/b1nary/KruemelMonsta/wiki/Mods)
 
+## Changelog
+
+Version 0.2
+  * Added changelog
+
+Version 0.1 *alpha*
+  * rolling updates/fixes
+  * alpha release
+
+
 ## Author
 
 b1nary

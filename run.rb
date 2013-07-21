@@ -85,9 +85,14 @@ interface = Cli.new
 $logall = false
 $logall_log = {}
 
+$filter = {}
+$filter[:on]    = true
+$filter[:type]  = :black
+$filter[:ips]   = []
+$filter[:ports] = []
+
 @sort = :time
 @reverse = false
-@filter = ''
 @clist = [
 	'list', 'view', 'dns', 'http', 'ip', 'list', 'logall'
 ].sort
@@ -137,18 +142,84 @@ while inp = _readline
 	elsif cmd[0] == "filter" or cmd[0] == "f"
 		if !cmd[1].nil?
 			if cmd[1] == "clear" or cmd[1] == "del"
-				@filter = ''
+				$filter[:on] = false
 				$mst = :info
-				$msg = "Filter cleared"
+				$msg = "Filter cleared and deactivated"
+			elsif cmd[1] == "on"
+				$mst = :info
+				$msg = "Filter activated [Ports #{$filter[:ports].size} | IPs #{$filter[:ips].size}]"
+				$filter[:on] = true
+			elsif cmd[1] == "off"
+				$mst = :info
+				$msg = "Filter deactivated [Ports #{$filter[:ports].size} | IPs #{$filter[:ips].size}]"
+				$filter[:on] = false
+			elsif cmd[1] == "white"
+				$mst = :info
+				$msg = "Filter mode set to 'whitelist'"
+				$filter[:type] = :white
+			elsif cmd[1] == "black"
+				$mst = :info
+				$msg = "Filter mode set to 'blacklist'"
+				$filter[:type] = :black
+			elsif cmd[1] == "list"
+				list = ["Filter list","Modus: #{$filter[:type].to_s}","Active: #{$filter[:on]}","","Ports\t"]
+				$filter[:ports].each do |i|
+					list << "- #{i}"
+				end
+				list << ""
+				list << "IPs\t"
+				$filter[:ips].each do |i|
+					list << "- #{i}"
+				end
+				Cli.help(list)
 			else
 				f = inp.split('filter ',2)[1] if cmd[0] == "filter"
 				f = inp.split('f ',2)[1] if cmd[0] == "f"
-				@filter = f
-				$mst = :info
-				$msg = "Filter set to: \"#{f}\""
+				
+				type = :ports
+				type = :ips   if f.include? '.'
+
+				if f.match(/^-/)
+					f = f.gsub('-','')
+					if $filter[type].include? f
+						$mst = :info
+						$msg = "Filter \"#{f}\" removed"
+						$filter[type].delete(f)
+					else
+						$mst = :info
+						$msg = "Filter \"#{f}\" does not exist"
+					end
+				else
+					$filter[type] << f.gsub('+','')
+					$filter[type].uniq!
+					$mst = :info
+					$msg = "Filter added \"#{f}\""
+				end
 			end
 		else
-			Cli.help ["Filtering","filter the package info","Usage: filter some values","Shortcut: f","","There is nothing special around here.\t","Just type filter followed by your filter value\t","","You can clear the filter easily\t","filter clear"]
+			Cli.help [
+			"Filtering",
+			"filter by connection info",
+			"Usage: filter [[+]VALUE|-VALUE|list|clear|on|off|white|black]",
+			"Shortcut: f",
+			"",
+			"A filter can eather be a whitelist or a blacklist.\t",
+			"The whitelist filters all but the filter list\t",
+			"The Blacklist does the opposite (default)\t",
+			"",
+			"Add or remove item from filter\t",
+			"filter +80         # adds port 80",
+			"filter 6667        # adds to, also without +",
+			"filter -127.0.0.1  # removes ip from filter",
+			"",
+			"List filter\t",
+			"filter list",
+			"",
+			"Set black/white list\t",
+			"filter black|white",
+			"",
+			"Clear filter\t",
+			"filter clear"]
 			con = false
 		end
 
@@ -215,7 +286,7 @@ while inp = _readline
 			rescue
 			end
 		else
-			interface.conns_format Data.dump_arr,@sort,@reverse,@filter if con
+			interface.conns_format Data.dump_arr,@sort,@reverse,$filter if con
 		end
 
 	end

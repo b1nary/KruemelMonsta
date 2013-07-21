@@ -40,7 +40,16 @@ class Cli
 		arr.reverse! if reverse
 		arr.each do |l|
 			begin
-			if filter == '' or (l[0].to_s.include? filter or l[1].to_s.include? filter or l[2].to_s.include? filter or l[3].to_s.include? filter or l[4].to_s.include? filter or l[5].to_s.include? filter or l[6].to_s.include? filter or l[7].to_s.include? filter or l[8].to_s.include? filter or l[9].to_s.include? filter or l[10].to_s.include? filter)
+				if filter[:on] == false or (
+						(filter[:type] == :white and (
+							filter[:ports].include? l[2] or
+							filter[:ips].include? l[0] or filter[:ips].include? l[1]
+						)) or 
+						(filter[:type] == :black and (
+							!filter[:ports].include? l[2] and
+							!filter[:ips].include? l[0] and !filter[:ips].include? l[1]
+						))
+					) 
 				print ' '
 				# slug l[4]
 				Util.foreground COLOR_CONTENT_1
