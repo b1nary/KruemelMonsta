@@ -24,12 +24,12 @@ _Please report back if you create some cool modules._
 
 ## Changelog
 
-Version 0.2
-  * Added changelog
+    Version 0.2
+    * Added changelog
 
-Version 0.1 *alpha*
-  * rolling updates/fixes
-  * alpha release
+    Version 0.1 *alpha*
+    * rolling updates/fixes
+    * alpha release
 
 
 ## Author
