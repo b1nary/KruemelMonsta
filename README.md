@@ -7,9 +7,10 @@ Gathered information will be detected by available modules, these modules will a
 
 *Features*
 
-	* Log & analyze traffic
+	* Log & analyze traffic on connection basis
+	* Spawn a proxy with collected cookies
+	* Log IRC traffic
 	* Modules to make the data easy accessible
-	* Cookie proxy
 	* much more
 
 _Please report back if you create some cool modules._
