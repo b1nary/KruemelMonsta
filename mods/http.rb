@@ -3,6 +3,7 @@ class MOD_http
 	@@http = Array.new
 	@@filter = nil
 	@@proxy = nil
+	@@helptext = ["HTTP Modul","Usage: http command [parameter]","","Commands:"," list\t\t\tlist captured requests"," size\t\t\trequest count"," filter FILTER\t\tset filter"," filter clear\t\tclear filter"," remove VALUE\t\tremove by value","","Full Info:"," NUM\t\tjust type the request id as command","","Cookie Proxy","Spawn Proxy session for specific requests with:"," proxy PORT [FILTER]\t","Yes you can filter the session per cookie content, you need also:"," proxy stop\t"," proxy update [FILTER]\t"]
 
 	def self.strings
 		[['HTTP/','Content-Length:'],['GET /','ost: '],['POST /','ost: ']]
@@ -66,18 +67,19 @@ class MOD_http
 			end
 			Cli.list_http @@http, @@filter
 
-		elsif cmd[0] == "proxy"
-			if !cmd[1].nil? and cmd[1] == "stop"
+		elsif cmd[0] == "proxy" and !cmd[1].nil?
+			if  cmd[1] == "stop"
 				if !@@proxy.nil?
 					@@proxy.stop
 					@@proxy = nil
 					$mst = :info
 					$msg = "Proxy stopped"
 				else
+					@@proxy = nil
 					$mst = :error
 					$msg = "No Proxy running"
 				end
-			elsif !cmd[1].nil? and cmd[1] == "update"
+			elsif cmd[1] == "update"
 				if !@@proxy.nil?
 					filt = cmd[2] if !cmd[2].nil?
 					@@proxy.update @@http, filt
@@ -89,7 +91,7 @@ class MOD_http
 				end
 
 			else
-				if @@proxy == nil and !cmd[1].nil?
+				if @@proxy == nil
 					port = cmd[1]
 					filt = nil
 					filt = cmd[2] if !cmd[2].nil?
@@ -104,7 +106,7 @@ class MOD_http
 			Cli.list_2col "Package info:", @@http[cmd[0].to_i] if !@@http[cmd[0].to_i].nil?
 
 		else
-			Cli.help ["HTTP Modul","Usage: http command [parameter]","","Commands:"," list\t\t\tlist captured requests"," size\t\t\trequest count"," filter FILTER\t\tset filter"," filter clear\t\tclear filter"," remove VALUE\t\tremove by value","","Full Info:"," NUM\t\tjust type the request id as command","","Cookie Proxy","Spawn Proxy session for specific requests with:"," proxy PORT [FILTER]\t","Yes you can filter the session per cookie content, you need also:"," proxy stop\t"," proxy update [FILTER]\t"]
+			Cli.help @@helptext
 
 		end
 	end
