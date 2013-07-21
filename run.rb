@@ -229,6 +229,11 @@ while inp = _readline
 	elsif cmd[0] == "remove" or cmd[0] == "r"
 		Data.remove cmd
 
+	#
+	# About
+	#
+	elsif cmd[0] == "about"
+		Cli.help ["KrumelMonsta","a Ruby-Pcap based network-traffic sniffer","","Created by Roman Pramberger\t","        roman@pramberger.ch","","License: MIT\t"]
 
 	#
 	# Log all
