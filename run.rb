@@ -82,11 +82,14 @@ Util.init
 Mods.init
 interface = Cli.new
 
+$logall = false
+$logall_log = {}
+
 @sort = :time
 @reverse = false
 @filter = ''
 @clist = [
-	'list', 'view', 'dns', 'http', 'ip', 'list'
+	'list', 'view', 'dns', 'http', 'ip', 'list', 'logall'
 ].sort
 comp = proc { |s| @clist.grep( /^#{Regexp.escape(s)}/ ) }
 Readline.completion_append_character = " "
@@ -154,6 +157,43 @@ while inp = _readline
 	#
 	elsif cmd[0] == "remove" or cmd[0] == "r"
 		Data.remove cmd
+
+
+	#
+	# Log all
+	#
+	elsif cmd[0] == "logall" or cmd[0] == "la"
+		if !cmd[1].nil? and cmd[1] == 'clear'
+			$logall_log = {}
+			$mst = :info
+			$msg = "Log-All log cleared"
+		elsif !cmd[1].nil? and cmd[1] == 'stat'
+			c = 0
+			$logall_log.each do |x|
+				c += x.size
+			end
+			$mst = :info
+			$msg = "[Log-All] #{$logall_log.size} connections and #{c} packages logged"
+		elsif !cmd[1].nil? and cmd[1] == 'list'
+			if cmd[2].nil?
+				$logall_log.each do |connection|
+					p connection[0]
+					connection[1].each do |paket|
+						Cli.print_pkg paket
+					end
+				end
+			end
+		else
+			if $logall == true
+				$logall = false
+				$mst = :info
+				$msg = "Log-All deactivated"
+			else
+				$logall = true
+				$mst = :info
+				$msg = "Log-All activated"
+			end
+		end
 
 	#
 	# Stats

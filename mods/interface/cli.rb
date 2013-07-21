@@ -90,6 +90,16 @@ class Cli
 		end
 	end
 	
+	def self.print_pkg pkg 
+		Util.foreground COLOR_CONTENT_3
+		p pkg.raw_data
+		Util.foreground COLOR_CONTENT_4
+		p Util.dump_pkt(pkg)
+		Util.foreground COLOR_CONTENT_5
+		p Util.to_hex(pkg)
+		Util.foreground COLOR_CONTENT_2
+	end
+
 	##
 	# Ugly in code, but sexy in look
 	# (this applys also to most of the other code)

@@ -68,6 +68,11 @@ class Data
 	##
 	# Let the known Connection work
 	def self.work key, pkt
+		if $logall
+			$logall_log[key] = [] if $logall_log[key].nil?
+			$logall_log[key] << pkt
+		end
+
 		@@conns[key][4] = Time.new.to_i
 		@@conns[key][5] += 1
 		@@conns[key][3] += pkt.size

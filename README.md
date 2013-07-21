@@ -18,7 +18,8 @@ _Please report back if you create some cool modules._
 
 [Installation](https://github.com/b1nary/KruemelMonsta/wiki/Installation) - 
 [Commands](https://github.com/b1nary/KruemelMonsta/wiki/Commands) - 
-[Themes](https://github.com/b1nary/KruemelMonsta/wiki/Themes)
+[Themes](https://github.com/b1nary/KruemelMonsta/wiki/Themes) - 
+[Mods](https://github.com/b1nary/KruemelMonsta/wiki/Mods)
 
 ## Author
 
