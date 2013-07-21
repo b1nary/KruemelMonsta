@@ -82,6 +82,8 @@ Util.init
 Mods.init
 interface = Cli.new
 
+$version = "0.2"
+
 $logall = false
 $logall_log = {}
 
