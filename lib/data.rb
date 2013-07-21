@@ -122,12 +122,9 @@ class Data
 					if Util.numeric? cmd[2]
 						@@conns.each do |k,v|
 							old = Time.now.to_f-v[4].to_f
-							begin
-								if old > cmd[2].to_i
-									@@conns.delete(k)
-									d += 1
-								end
-							rescue
+							if old > cmd[2].to_i
+								@@conns.delete(k)
+								d += 1
 							end
 						end
 						if d == 0	
