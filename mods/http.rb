@@ -92,10 +92,15 @@ class MOD_http
 
 			else
 				if @@proxy == nil
-					port = cmd[1]
-					filt = nil
-					filt = cmd[2] if !cmd[2].nil?
-					@@proxy = Proxy.new(port,@@http,filt)
+					if cmd[1].is_i?
+						port = cmd[1]
+						filt = nil
+						filt = cmd[2] if !cmd[2].nil?
+						@@proxy = Proxy.new(port,@@http,filt)
+					else
+						$mst = :error
+						$msg = "Not a valid port"
+					end
 				else
 					$mst = :error
 					$msg = "There is already a proxy running"

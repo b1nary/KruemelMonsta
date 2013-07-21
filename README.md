@@ -26,6 +26,7 @@ _Please report back if you create some cool modules._
 
     Version 0.2
     * Added changelog
+    * fixed proxy output
 
     Version 0.1 *alpha*
     * rolling updates/fixes
